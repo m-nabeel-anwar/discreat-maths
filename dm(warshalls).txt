@@ -1,0 +1,42 @@
+public const int in = 99999;
+
+private static void print(int[,] dist, int verticesCount)
+{
+	Console.WriteLine("short distance");
+
+	for (int i = 0; i < verticesCount; ++i)
+	{
+		for (int j = 0; j < verticesCount; ++j)
+		{
+			if (dist[i, j] == in)
+				Console.Write("in".PadLeft(7));
+			else
+				Console.Write(dist[i, j].ToString().PadLeft(7));
+		}
+
+		Console.WriteLine();
+	}
+}
+
+public static void algo(int[,] graphh, int verticesCount)
+{
+	int[,] dist = new int[verticesCount, verticesCount];
+
+	for (int i = 0; i < verticesCount; ++i)
+		for (int j = 0; j < verticesCount; ++j)
+			dist[i, j] = graphh[i, j];
+
+	for (int a = 0; a < verticesCount; ++a)
+	{
+		for (int i = 0; i < verticesCount; ++i)
+		{
+			for (int j = 0; j < verticesCount; ++j)
+			{
+				if (dist[i, a] + dist[a, j] < dist[i, j])
+					dist[i, j] = dist[i, a] + dist[a, j];
+			}
+		}
+	}
+
+	Print(distance, verticesCount);
+}
